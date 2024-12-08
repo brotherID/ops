@@ -1,0 +1,36 @@
+server:
+  port: 9088
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  kafka:
+    bootstrap-servers: ${HOSTNAME_KAFKA}:9092
+    consumer:
+      group-id: event-notification-ops
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    topics:
+      event-notification: event-notification
+
+  data:
+    mongodb:
+      #url: mongodb://mongodb:27017/purchasePoint?authSource=admin
+      #uri: mongodb://mongodb:27017/purchasePoint?authSource=admin
+      #uri: mongodb://${SPRING_DATA_MONGODB_HOST}:27017/${SPRING_DATA_MONGODB_DATABASE}?authSource=admin
+      #username: root
+      #username: ${SPRING_DATA_MONGODB_USERNAME}
+      #password: rootpassword
+      #password: ${SPRING_DATA_MONGODB_PASSWORD}
+      username: root
+      database: purchasePoint
+      password: rootpassword
+      port: '27017'
+      host: mongodb
+      authentication-database: admin
